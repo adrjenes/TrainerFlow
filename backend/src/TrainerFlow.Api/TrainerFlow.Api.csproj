@@ -1,21 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
-    <ProjectReference Include="..\Persistence\TrainerFlow.Persistence\TrainerFlow.Persistence.csproj" />
-    <ProjectReference Include="..\Modules\Identity\TrainerFlow.Modules.Identity\TrainerFlow.Modules.Identity.csproj" />
-    <ProjectReference Include="..\Modules\Offers\TrainerFlow.Modules.Offers\TrainerFlow.Modules.Offers.csproj" />
-    <ProjectReference Include="..\Modules\Files\TrainerFlow.Modules.Files\TrainerFlow.Modules.Files.csproj" />
-    <ProjectReference Include="..\Modules\Orders\TrainerFlow.Modules.Orders\TrainerFlow.Modules.Orders.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql" Version="10.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Files\TrainerFlow.Modules.Files\TrainerFlow.Modules.Files.csproj" />
+    <ProjectReference Include="..\Modules\Identity\TrainerFlow.Modules.Identity\TrainerFlow.Modules.Identity.csproj" />
+    <ProjectReference Include="..\Modules\Offers\TrainerFlow.Modules.Offers\TrainerFlow.Modules.Offers.csproj" />
+    <ProjectReference Include="..\Modules\Orders\TrainerFlow.Modules.Orders\TrainerFlow.Modules.Orders.csproj" />
+    <ProjectReference Include="..\Persistence\TrainerFlow.Persistence\TrainerFlow.Persistence.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

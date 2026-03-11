@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TrainerFlow.Persistence;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("TrainerFlowDb")
