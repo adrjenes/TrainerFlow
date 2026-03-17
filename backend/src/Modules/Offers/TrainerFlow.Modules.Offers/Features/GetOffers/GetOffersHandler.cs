@@ -1,9 +1,9 @@
 ﻿namespace TrainerFlow.Modules.Offers.Features.GetOffers;
 
-public sealed class GetOffersHandler(IOffersReadRepository offersReadRepository)
+public sealed class GetOffersHandler(IOffersRepository repository)
 {
     public async Task<IReadOnlyList<OfferResponse>> HandleAsync(GetOffersQuery query, CancellationToken cancellationToken)
     {
-        return await offersReadRepository.GetAllAsync(cancellationToken);
+        return await repository.GetAllAsync(cancellationToken);
     }
 }

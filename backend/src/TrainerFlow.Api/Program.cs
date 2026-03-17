@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TrainerFlow.Modules.Offers.Features.GetOfferBySlug;
 using TrainerFlow.Modules.Offers.Features.GetOffers;
 using TrainerFlow.Persistence;
-using TrainerFlow.Persistence.Features.Offers.GetOffers;
+using TrainerFlow.Persistence.Features.Offers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,9 @@ builder.Services.AddDbContext<TrainerFlowDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<GetOffersHandler>();
-builder.Services.AddScoped<IOffersReadRepository, OffersReadRepository>();
+builder.Services.AddScoped<GetOfferBySlugHandler>();
+
+builder.Services.AddScoped<IOffersRepository, OffersRepository>();
 
 var app = builder.Build();
 
