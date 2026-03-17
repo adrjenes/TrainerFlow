@@ -15,7 +15,7 @@ public sealed class Offer
 
         if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name is required.", nameof(name));
 
-        if (price < 0) throw new ArgumentOutOfRangeException(nameof(price), "Price cannot be negative.");
+        if (price <= 0) throw new ArgumentOutOfRangeException(nameof(price), "Price must be greater than zero.");
 
         Slug = slug.Trim().ToLowerInvariant();
         Name = name.Trim();
@@ -24,7 +24,8 @@ public sealed class Offer
 
     public void ChangePrice(decimal price)
     {
-        if (price < 0) throw new ArgumentOutOfRangeException(nameof(price), "Price cannot be negative.");
+        if (price <= 0)
+            throw new ArgumentOutOfRangeException(nameof(price), "Price must be greater than zero.");
 
         Price = price;
     }
