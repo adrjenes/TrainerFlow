@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\src\Modules\Offers\TrainerFlow.Modules.Offers\TrainerFlow.Modules.Offers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modules\Offers\Features\GetOffers\" />
-  </ItemGroup>
-
 </Project>
