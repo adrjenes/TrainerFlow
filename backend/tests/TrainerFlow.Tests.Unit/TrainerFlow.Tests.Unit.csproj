@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Modules\Offers\Features\GetOffers\" />
-    <Folder Include="Modules\Offers\Features\GetOffersBySlug\" />
   </ItemGroup>
 
 </Project>
