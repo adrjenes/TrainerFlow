@@ -1,6 +1,6 @@
 ﻿namespace TrainerFlow.Modules.Offers.Features.GetOfferBySlug;
 
-public sealed class GetOfferBySlugHandler(IOffersRepository repository)
+public sealed class GetOfferBySlugHandler(IGetOfferBySlugReadRepository repository)
 {
     public async Task<OfferDetailsResponse?> HandleAsync(GetOfferBySlugQuery query, CancellationToken cancellationToken)
     {

@@ -10,7 +10,7 @@ public sealed class GetOfferBySlugHandlerTests
     public async Task HandleAsync_ShouldReturnOffer_WhenOfferExists()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOfferBySlugReadRepository>();
         var expected = new OfferDetailsResponse(1, "plan-treningowy", "Plan treningowy", 199m);
 
         repositoryMock
@@ -31,7 +31,7 @@ public sealed class GetOfferBySlugHandlerTests
     public async Task HandleAsync_ShouldPassNormalizedSlugToRepository_WhenSlugContainsSpacesAndUppercase()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOfferBySlugReadRepository>();
 
         repositoryMock
             .Setup(x => x.GetBySlugAsync("plan-treningowy", It.IsAny<CancellationToken>()))
@@ -54,7 +54,7 @@ public sealed class GetOfferBySlugHandlerTests
     public async Task HandleAsync_ShouldReturnNull_WhenSlugIsEmpty()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOfferBySlugReadRepository>();
         var handler = new GetOfferBySlugHandler(repositoryMock.Object);
 
         var query = new GetOfferBySlugQuery(" ");
@@ -74,7 +74,7 @@ public sealed class GetOfferBySlugHandlerTests
     public async Task HandleAsync_ShouldReturnNull_WhenOfferDoesNotExist()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOfferBySlugReadRepository>();
 
         repositoryMock
             .Setup(x => x.GetBySlugAsync("unknown", It.IsAny<CancellationToken>()))

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TrainerFlow.Modules.Offers.Features.GetOfferBySlug;
+using TrainerFlow.Modules.Offers.Features.GetOffers;
 using TrainerFlow.Persistence.Features.Offers;
 
 namespace TrainerFlow.Persistence.DependencyInjection;
@@ -12,7 +14,8 @@ public static class PersistenceExtensions
             options.UseNpgsql(connectionString)
                    .UseTrainerFlowSeeding());
 
-        services.AddScoped<IOffersRepository, OffersRepository>();
+        services.AddScoped<IGetOffersReadRepository, GetOffersReadRepository>();
+        services.AddScoped<IGetOfferBySlugReadRepository, GetOfferBySlugReadRepository>();
 
         return services;
     }

@@ -10,7 +10,7 @@ public sealed class GetOffersHandlerTests
     public async Task HandleAsync_ShouldReturnOffers_WhenOffersExist()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOffersReadRepository>();
 
         IReadOnlyList<OfferResponse> expected =
         [
@@ -36,7 +36,7 @@ public sealed class GetOffersHandlerTests
     public async Task HandleAsync_ShouldReturnEmptyList_WhenNoOffersExist()
     {
         // Arrange
-        var repositoryMock = new Mock<IOffersRepository>();
+        var repositoryMock = new Mock<IGetOffersReadRepository>();
 
         IReadOnlyList<OfferResponse> expected = [];
 
