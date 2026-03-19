@@ -1,24 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using TrainerFlow.Modules.Offers.Features.GetOfferBySlug;
-using TrainerFlow.Modules.Offers.Features.GetOffers;
+using TrainerFlow.Modules.Offers.DependencyInjection;
 using TrainerFlow.Persistence;
-using TrainerFlow.Persistence.Features.Offers;
+using TrainerFlow.Persistence.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("TrainerFlowDb")
     ?? throw new InvalidOperationException("Missing ConnectionStrings:TrainerFlowDb");
 
-builder.Services.AddDbContext<TrainerFlowDbContext>(options =>
-    options.UseNpgsql(connectionString)
-           .UseTrainerFlowSeeding());
+builder.Services.AddPersistence(connectionString);
+builder.Services.AddOffersModule();
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<GetOffersHandler>();
-builder.Services.AddScoped<GetOfferBySlugHandler>();
-
-builder.Services.AddScoped<IOffersRepository, OffersRepository>();
 
 var app = builder.Build();
 
@@ -31,8 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapControllers();
 
+app.MapControllers();
 app.MapGet("/health", () => Results.Ok("OK"));
 
 app.Run();
