@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TrainerFlow.Modules.Offers.DependencyInjection;
+using TrainerFlow.Modules.Orders.DependencyInjection;
 using TrainerFlow.Persistence;
 using TrainerFlow.Persistence.DependencyInjection;
 
@@ -10,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("TrainerFlowDb"
 
 builder.Services.AddPersistence(connectionString);
 builder.Services.AddOffersModule();
-
+builder.Services.AddOrdersModule();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
