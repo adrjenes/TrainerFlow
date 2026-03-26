@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TrainerFlow.Modules.Offers.DependencyInjection;
 using TrainerFlow.Modules.Orders.DependencyInjection;
@@ -13,6 +14,9 @@ builder.Services.AddPersistence(connectionString);
 builder.Services.AddOffersModule();
 builder.Services.AddOrdersModule();
 builder.Services.AddControllers();
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

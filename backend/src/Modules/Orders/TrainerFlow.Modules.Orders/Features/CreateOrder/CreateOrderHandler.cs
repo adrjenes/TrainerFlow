@@ -6,9 +6,6 @@ public sealed class CreateOrderHandler(IOrdersRepository ordersRepository, IOrde
 {
     public async Task<Guid> HandleAsync(CreateOrderCommand command, CancellationToken cancellationToken)
     {
-        if (command.Items is null || command.Items.Count == 0)
-            throw new ArgumentException("Order must contain at least one item.", nameof(command.Items));
-
         var offerIds = command.Items
             .Select(x => x.OfferId)
             .Distinct()

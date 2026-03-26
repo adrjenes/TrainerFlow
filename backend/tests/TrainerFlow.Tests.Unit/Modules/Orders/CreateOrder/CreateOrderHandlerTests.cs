@@ -119,31 +119,6 @@ public sealed class CreateOrderHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_ShouldThrowArgumentException_WhenItemsAreEmpty()
-    {
-        // Arrange
-        var ordersRepositoryMock = new Mock<IOrdersRepository>();
-        var orderOfferLookupMock = new Mock<IOrderOfferLookup>();
-
-        var command = new CreateOrderCommand(
-            "test@example.com",
-            "Jan",
-            "Kowalski",
-            "123456789",
-            [],
-            null);
-
-        var handler = new CreateOrderHandler(ordersRepositoryMock.Object, orderOfferLookupMock.Object);
-
-        // Act
-        Func<Task> act = () => handler.HandleAsync(command, CancellationToken.None);
-
-        // Assert
-        await act.Should().ThrowAsync<ArgumentException>()
-            .WithParameterName("Items");
-    }
-
-    [Fact]
     public async Task HandleAsync_ShouldThrowInvalidOperationException_WhenOfferDoesNotExist()
     {
         // Arrange
