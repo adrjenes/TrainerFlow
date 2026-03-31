@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\TrainerFlow.Shared\TrainerFlow.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

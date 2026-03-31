@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using TrainerFlow.Api.Exceptions;
 using TrainerFlow.Modules.Offers.DependencyInjection;
 using TrainerFlow.Modules.Orders.DependencyInjection;
 using TrainerFlow.Persistence;
@@ -14,9 +15,9 @@ builder.Services.AddPersistence(connectionString);
 builder.Services.AddOffersModule();
 builder.Services.AddOrdersModule();
 builder.Services.AddControllers();
-
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -30,6 +31,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler(new ExceptionHandlerOptions
+{
+    AllowStatusCode404Response = true
+});
 
 app.MapControllers();
 app.MapGet("/health", () => Results.Ok("OK"));

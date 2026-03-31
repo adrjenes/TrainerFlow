@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using TrainerFlow.Api.Common.Validation;
+
 using TrainerFlow.Modules.Orders.Features.CreateOrder;
 
 namespace TrainerFlow.Api.Controllers;
@@ -12,13 +12,7 @@ public sealed class OrdersController(CreateOrderHandler handler, IValidator<Crea
     [HttpPost]
     public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderCommand command, CancellationToken cancellationToken)
     {
-        var validationResult = await validator.ValidateAsync(command, cancellationToken);
-
-        if (!validationResult.IsValid)
-        {
-            validationResult.AddToModelState(ModelState);
-            return ValidationProblem(ModelState);
-        }
+        await validator.ValidateAndThrowAsync(command, cancellationToken);
 
         var orderId = await handler.HandleAsync(command, cancellationToken);
 

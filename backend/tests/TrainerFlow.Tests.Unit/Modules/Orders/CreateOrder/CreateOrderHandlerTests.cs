@@ -2,6 +2,7 @@
 using Moq;
 using TrainerFlow.Modules.Orders.Domain;
 using TrainerFlow.Modules.Orders.Features.CreateOrder;
+using TrainerFlow.Shared.Exceptions;
 
 namespace TrainerFlow.Tests.Unit.Modules.Orders.CreateOrder;
 
@@ -119,7 +120,7 @@ public sealed class CreateOrderHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_ShouldThrowInvalidOperationException_WhenOfferDoesNotExist()
+    public async Task HandleAsync_ShouldThrowNotFoundException_WhenOfferDoesNotExist()
     {
         // Arrange
         var ordersRepositoryMock = new Mock<IOrdersRepository>();
@@ -143,7 +144,7 @@ public sealed class CreateOrderHandlerTests
         Func<Task> act = () => handler.HandleAsync(command, CancellationToken.None);
 
         // Assert
-        await act.Should().ThrowAsync<InvalidOperationException>()
+        await act.Should().ThrowAsync<NotFoundException>()
             .WithMessage("Offer with id '999' was not found.");
     }
 

@@ -1,4 +1,6 @@
 ﻿using TrainerFlow.Modules.Orders.Domain;
+using TrainerFlow.Shared.Exceptions;
+
 
 namespace TrainerFlow.Modules.Orders.Features.CreateOrder;
 
@@ -30,7 +32,7 @@ public sealed class CreateOrderHandler(IOrdersRepository ordersRepository, IOrde
         foreach (var item in command.Items)
         {
             if (!offersById.TryGetValue(item.OfferId, out var offer))
-                throw new InvalidOperationException($"Offer with id '{item.OfferId}' was not found.");
+                throw new NotFoundException($"Offer with id '{item.OfferId}' was not found.");
 
             order.AddItem(offer.Id, offer.Name, offer.Price, item.Quantity);
         }
