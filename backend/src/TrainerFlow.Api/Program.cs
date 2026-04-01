@@ -32,10 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandler(new ExceptionHandlerOptions
-{
-    AllowStatusCode404Response = true
-});
+app.UseExceptionHandler();
 
 app.MapControllers();
 app.MapGet("/health", () => Results.Ok("OK"));
